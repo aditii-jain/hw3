@@ -68,7 +68,11 @@ void dealloc(Node* head)
 // -----------------------------------------------
 
 
-
+struct EvenPredicate {
+  bool operator()(int x) {
+    return x % 2 == 0;  // True for even numbers (to be removed)
+  }
+};
 
 
 int main(int argc, char* argv[])
@@ -86,10 +90,19 @@ int main(int argc, char* argv[])
     print(head);
 
     // Test out your linked list code
-
-
-
+    Node* larger = nullptr;
+    Node* smaller = nullptr;
+    llpivot(head, smaller, larger, 13);
+    cout << "Pivot: 13" << endl;
+    cout << "Smaller list: ";
+    print(smaller);
+    cout << "Larger list: ";
+    print(larger);
     
+    head = readList(argv[1]);
+    Node* filteredList = llfilter(head, EvenPredicate());
+    cout << "Filtered list: ";
+    print(filteredList);
     return 0;
 
 }

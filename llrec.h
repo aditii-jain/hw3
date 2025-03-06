@@ -80,11 +80,19 @@ Node* llfilter(Node* head, Comp pred);
 template <typename Comp>
 Node* llfilter(Node* head, Comp pred)
 {
-    //*********************************************
-    // Provide your implementation below
-    //*********************************************
+   // 3 -> 4 -> 9 // filter out even numbers
+  if (head == NULL) {
+    return NULL;
+  }
+  Node* filteredNext = llfilter(head->next, pred);
 
-
+  if (pred(head->val)) { // need to filter
+    delete head;
+    return filteredNext;
+  } else {
+    head->next = filteredNext;
+    return head;
+  }
 }
 
 #endif
