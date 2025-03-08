@@ -11,9 +11,9 @@ functional
 -
 stdexcept
 -
-algorithm
--
 vector
+-
+algorithm
 -
 
 /home/codio/workspace/hw3/hw3_tests/heap_tests/heap_tests.cpp
