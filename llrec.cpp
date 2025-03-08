@@ -35,23 +35,28 @@
  *   Pivot value
  *
  */
-void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot){
+void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
+  // base case: if the linked list is empty, set both smaller and larger to NULL
   if (head == nullptr) {
     smaller = nullptr;
     larger = nullptr;
     return;
   }
 
+  // store the next node before modifying the current node's next pointer
   Node* temp = head->next;
 
-  if (head->val <= pivot){
-    head->next = nullptr;
-    smaller = head;
-    llpivot(temp, smaller->next, larger, pivot);
-  } else {
-    head->next = nullptr;
-    larger = head;
-    llpivot(temp, smaller, larger->next, pivot);
+  // if the current node's value is less than or equal to the pivot
+  if (head->val <= pivot) {
+    head->next = nullptr;  // disconnect the node from the original list
+    smaller = head;        // assign the node to the smaller list
+    llpivot(temp, smaller->next, larger, pivot);  // recur for the next node
+  } else {  // if the current node's value is greater than the pivot
+    head->next = nullptr;  // disconnect the node from the original list
+    larger = head;         // assign the node to the larger list
+    llpivot(temp, smaller, larger->next, pivot);  // recur for the next node
   }
+
+  // ensure the original head is set to NULL after the split
   head = nullptr;
 }
