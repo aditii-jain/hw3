@@ -1,6 +1,4 @@
-#include <functional>
 #include "llrec.h"
-using namespace std;
 
 void print(Node* head);
 /**
