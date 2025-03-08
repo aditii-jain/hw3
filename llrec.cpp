@@ -1,6 +1,5 @@
 #include "llrec.h"
 
-void print(Node* head);
 /**
  * Given a linked list pointed to by head, creates two lists
  * where all values less than or equal to the pivot value are
