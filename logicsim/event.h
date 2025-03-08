@@ -16,7 +16,7 @@ be a min-heap. i.e. Event's are sorted by time. **/
 
 typedef struct EventLess {
         //write the operator() required to make this a functor that compares Events by time
-        bool operator() (Event* a, Event* b) {
+        bool operator() (const Event* a, const Event* b) {
             return a->time < b->time;
         }
 } EventLess;
