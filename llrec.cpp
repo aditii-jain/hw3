@@ -1,5 +1,9 @@
 #include "llrec.h"
 
+//*********************************************
+// Provide your implementation of llpivot below
+//*********************************************
+
 /**
  * Given a linked list pointed to by head, creates two lists
  * where all values less than or equal to the pivot value are
@@ -31,32 +35,23 @@
  *   Pivot value
  *
  */
+void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot){
+  if (head == nullptr) {
+    smaller = nullptr;
+    larger = nullptr;
+    return;
+  }
 
-void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
-    if (head == nullptr) {
-        // Base case: empty list
-        smaller = nullptr;
-        larger = nullptr;
-        return;
-    }
+  Node* temp = head->next;
 
-    // Store the current node and move head to the next node before recursion
-    Node* curr = head;
-    head = head->next;
-
-    // Recursive call first (head recursion)
-    llpivot(head, smaller, larger, pivot);
-
-    // Process the current node after recursion
-    if (curr->val <= pivot) {
-        curr->next = smaller;
-        smaller = curr;
-        llpivot(head, smaller->next, larger, pivot);
-    } else {
-        curr->next = larger;
-        larger = curr;
-        llpivot(head, smaller, larger->next, pivot);
-    }
-    head = nullptr;
+  if (head->val <= pivot){
+    head->next = nullptr;
+    smaller = head;
+    llpivot(temp, smaller->next, larger, pivot);
+  } else {
+    head->next = nullptr;
+    larger = head;
+    llpivot(temp, smaller, larger->next, pivot);
+  }
+  head = nullptr;
 }
-
