@@ -23,14 +23,18 @@ public:
     void pop() { // throws std::underflow_error if empty
         if (empty()) {
             throw std::underflow_error("Stack is empty");
+        } else {
+            std::vector<T>::pop_back();
         }
-        std::vector<T>::pop_back();
+        
     }
     const T& top() const { // throws std::underflow_error if empty 
         if (empty()) {
             throw std::underflow_error("Stack is empty");
+        } else {
+            return std::vector<T>::back();
         }
-        return std::vector<T>::back();
+        
     }
     // Add other members only if necessary
 };

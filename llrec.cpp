@@ -37,14 +37,6 @@ void print(Node* head);
  *
  */
 
-void print_list(Node* head)
-{
-    while(head) {
-        cout << head->val << " ";
-        head = head->next;
-    }
-    cout << endl;
-}
 void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
     if (head == nullptr) {
         // Base case: empty list
@@ -64,9 +56,12 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
     if (curr->val <= pivot) {
         curr->next = smaller;
         smaller = curr;
+        llpivot(head, smaller->next, larger, pivot);
     } else {
         curr->next = larger;
         larger = curr;
+        llpivot(head, smaller, larger->next, pivot);
     }
+    head = nullptr;
 }
 
